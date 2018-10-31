@@ -1,4 +1,4 @@
-package cn.hurrican.controller;
+package cn.hurrican.common.controller;
 
 /**
  * @Author: Hurrican
@@ -7,5 +7,5 @@ package cn.hurrican.controller;
  * @Modified 19:38
  */
 
-public class HomeController {
+public class BaseController {
 }

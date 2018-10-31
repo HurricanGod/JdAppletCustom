@@ -78,24 +78,7 @@
 
 
 
-    <dependency>
-      <groupId>mysql</groupId>
-      <artifactId>mysql-connector-java</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.mybatis</groupId>
-      <artifactId>mybatis</artifactId>
-    </dependency>
 
-    <dependency>
-      <groupId>org.mybatis</groupId>
-      <artifactId>mybatis-spring</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>com.alibaba</groupId>
-      <artifactId>druid</artifactId>
-    </dependency>
 
 
   </dependencies>
@@ -142,7 +125,7 @@
           </resource>
           <!-- 不同环境的资源文件 -->
           <resource>
-            <directory>src/main/filters/${resources.env}</directory>
+            <directory>../common/src/main/filters/${resources.env}</directory>
           </resource>
         </resources>
       </build>
@@ -189,7 +172,7 @@
           </resource>
           <!-- 不同环境的资源文件 -->
           <resource>
-            <directory>src/main/filters/${resources.env}</directory>
+            <directory>../common/src/main/filters/${resources.env}</directory>
           </resource>
         </resources>
       </build>

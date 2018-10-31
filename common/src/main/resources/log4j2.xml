@@ -2,12 +2,25 @@
 <configuration status="off" monitorInterval="1800">
 
 	<properties>
-		<property name="log.dir">./</property>
+        <property name="log.dir">${sys:user.home}</property>
 	</properties>
 
 	<!--先定义所有的appender -->
 	<appenders>
 
+        <!-- 输出日志的格式 -->
+        <!--
+            %d{yyyy-MM-dd HH:mm:ss, SSS} : 日志生产时间
+            %p : 日志输出格式
+            %c : logger的名称
+            %m : 日志内容，即 logger.info("message")
+            %n : 换行符
+            %C : Java类名
+            %L : 日志输出所在行数
+            %M : 日志输出所在方法名
+            hostName : 本地机器名
+            hostAddress : 本地ip地址
+         -->
 		<!--这个输出控制台的配置 -->
 		<Console name="Console" target="SYSTEM_OUT">
 			<ThresholdFilter level="trace" onMatch="ACCEPT"

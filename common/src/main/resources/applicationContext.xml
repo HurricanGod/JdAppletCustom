@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+
+
+
+
+
+  			http://www.springframework.org/schema/task
+           http://www.springframework.org/schema/task/spring-task-4.1.xsd
+
+           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.1.xsd
+           http://www.springframework.org/schema/aop
+		   http://www.springframework.org/schema/aop/spring-aop-4.1.xsd">
+
+    <!-- 增加切面配置 -->
+    <aop:aspectj-autoproxy/>
+
+    <import resource="spring-service.xml"/>
+    <import resource="spring-db.xml"/>
+
+    <bean id="propertyConfigurer"
+          class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
+        <property name="nullValue" value="@null"/>
+        <property name="localOverride" value="true"/>
+        <property name="ignoreResourceNotFound" value="true"/>
+        <!-- 指定配置文件优先级online >> local >> test >> 默认properties -->
+        <property name="locations">
+            <list>
+                <value>classpath*:*.properties</value>
+            </list>
+        </property>
+        <property name="order" value="0"/>
+        <property name="fileEncoding">
+            <value>UTF-8</value>
+        </property>
+    </bean>
+
+    <!--扫描job注解 -->
+    <!-- 支持异步方法执行 -->
+    <task:annotation-driven/>
+
+</beans>

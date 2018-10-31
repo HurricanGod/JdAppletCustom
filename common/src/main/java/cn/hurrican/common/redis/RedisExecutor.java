@@ -1,5 +1,7 @@
 package cn.hurrican.common.redis;
 
+import cn.hurrican.common.exception.RedisRuntimeException;
+
 /**
  * Redis执行器
  *

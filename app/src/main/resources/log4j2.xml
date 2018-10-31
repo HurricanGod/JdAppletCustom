@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration status="off" monitorInterval="1800">
+
+	<properties>
+		<property name="log.dir">./</property>
+	</properties>
+
+	<!--先定义所有的appender -->
+	<appenders>
+
+		<!--这个输出控制台的配置 -->
+		<Console name="Console" target="SYSTEM_OUT">
+			<ThresholdFilter level="trace" onMatch="ACCEPT"
+				onMismatch="DENY" />
+			<PatternLayout
+				pattern="%d{yy/MM/dd HH:mm:ss.SSS} %-5level %logger{36} %L %M - %m%xEx%n" />
+		</Console>
+
+		<!-- 打印错误日志 -->
+		<RollingFile name="STDERR" fileName="${log.dir}/web/err.log"
+			filePattern="${log.dir}/web/err-%d{yyyy-MM-dd}-%i.log" append="true">
+			<PatternLayout>
+				<pattern>%n%-4r[%d{yyyy/MM/dd HH:mm:ss}] %5p [%t] %c(%F:%L) - %msg%n</pattern>
+			</PatternLayout>
+			<Policies>
+				<!-- 定时封存 -->
+				<!-- <TimeBasedTriggeringPolicy interval="6" modulate="true"/> -->
+				<TimeBasedTriggeringPolicy />
+				<SizeBasedTriggeringPolicy size="200MB" />
+			</Policies>
+
+			<ThresholdFilter level="error" onMatch="ACCEPT"
+				onMismatch="DENY" />
+			<!-- 如果不设置，默认为7 -->
+			<DefaultRolloverStrategy max="10" />
+		</RollingFile>
+
+
+		<RollingFile name="WARN" fileName="${log.dir}/web/warn.log"
+			filePattern="${log.dir}/web/warn-%d{yyyy-MM-dd}-%i.log" append="true">
+			<PatternLayout>
+				<pattern>%n%-4r[%d{yyyy/MM/dd HH:mm:ss}] %5p [%t] %c(%F:%L) - %msg%n</pattern>
+			</PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy />
+				<SizeBasedTriggeringPolicy size="200MB" />
+			</Policies>
+			<ThresholdFilter level="warn" onMatch="ACCEPT"
+				onMismatch="DENY" />
+			<DefaultRolloverStrategy max="10" />
+		</RollingFile>
+
+		<RollingFile name="INFO" fileName="${log.dir}/web/info.log"
+			filePattern="${log.dir}/web/info-%d{yyyy-MM-dd}-%i.log" append="true">
+			<PatternLayout>
+				<pattern>%n%-4r[%d{yyyy/MM/dd HH:mm:ss}] %5p [%t] %c(%F:%L) - %msg%n</pattern>
+			</PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy />
+				<SizeBasedTriggeringPolicy size="200MB" />
+			</Policies>
+			<ThresholdFilter level="info" onMatch="ACCEPT"
+				onMismatch="DENY" />
+			<DefaultRolloverStrategy max="10" />
+		</RollingFile>
+	</appenders>
+	<Loggers>
+		<Logger name="com.weixinjia.recreation.mapper" additivity="false" level="trace">
+			<AppenderRef ref="Console"/>
+		</Logger>
+		<!-- 建立一个默认的root的logger -->
+		<root level="info">
+			<AppenderRef ref="STDERR" />
+			<AppenderRef ref="WARN" />
+			<AppenderRef ref="INFO" />
+			<AppenderRef ref="Console" />
+			<!-- <AppenderRef ref="test"/> -->
+		</root>
+	</Loggers>
+</configuration>

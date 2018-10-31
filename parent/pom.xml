@@ -66,7 +66,7 @@
         <zkclient.version>0.10</zkclient.version>
         <rocketmq.client.version>4.2.0</rocketmq.client.version>
         <spring.rabbit.version>2.0.0.RELEASE</spring.rabbit.version>
-        <amqp.client>5.0.0</amqp.client>
+        <amqp.client>[5.4.0,)</amqp.client>
         <fileupload.version>1.2.2</fileupload.version>
         <ognl.version>3.0.1</ognl.version>
         <javassist.version>3.14.0-GA</javassist.version>

@@ -16,21 +16,11 @@
 
     </settings>
 
-    <typeAliases>
-        <package name="cn.hurrican.beans"/>
-        <package name="cn.hurrican.dtl"/>
-    </typeAliases>
-
-    <plugins>
+    <!--<plugins>-->
         <!-- 分页插件 -->
-        <plugin interceptor="com.weixinjia.recreation.common.mybatis.pagination.MySQLPaginationInterceptor"/>
+    <!--<plugin interceptor="common.mybatis.pagination.MySQLPaginationInterceptor"/>-->
         <!-- SQL拦截插件 -->
-        <plugin interceptor="com.weixinjia.recreation.common.mybatis.pagination.MySQLExcutorInterceptor"/>
-    </plugins>
-
-    <mappers>
-        <package name="cn.hurrican.dao"/>
-    </mappers>
-
+    <!--<plugin interceptor="common.mybatis.pagination.MySQLExcutorInterceptor"/>-->
+    <!--</plugins>-->
 
 </configuration>

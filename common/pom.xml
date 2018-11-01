@@ -152,9 +152,9 @@
 
         <!-- 生产 -->
         <profile>
-            <id>prd</id>
+            <id>pro</id>
             <properties>
-                <resources.env>prd</resources.env>
+                <resources.env>pro</resources.env>
             </properties>
             <build>
                 <plugins>
@@ -179,7 +179,7 @@
 
                 <filters>
                     <!-- 注意如果配置了多个filter，并且他们包含有相同的key，则以后面的value为最终值 -->
-                    <filter>src/main/filters/${resources.env}/log4j.properties</filter>
+                    <filter>src/main/filters/${resources.env}/jdbc.properties</filter>
                 </filters>
 
                 <!-- 最后生成的资源文件 -->

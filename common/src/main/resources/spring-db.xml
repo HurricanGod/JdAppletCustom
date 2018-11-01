@@ -3,47 +3,44 @@
 <beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns="http://www.springframework.org/schema/beans"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-http://www.springframework.org/schema/beans/spring-beans.xsd">
+            http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 
-    <bean id="innerDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-        <property name="driverClassName" value="${jdbc.driver}"/>
+    <!-- 配置druid数据源 -->
+    <bean name="dev4ConcurrentDataSource" class="com.alibaba.druid.pool.DruidDataSource"
+          init-method="init" destroy-method="close" primary="true">
+        <!-- 数据库连接基础信息 -->
         <property name="url" value="${jdbc.url}"/>
         <property name="username" value="${jdbc.user}"/>
         <property name="password" value="${jdbc.password}"/>
-    </bean>
-
-    <!-- 配置druid数据源 -->
-    <bean name="recreationDataSource" class="com.alibaba.druid.pool.DruidDataSource"
-          init-method="init" destroy-method="close" primary="true">
-        <!-- 数据库连接基础信息 -->
-        <property name="url" value="${recreation.db.url}"/>
-        <property name="username" value="${recreation.db.user}"/>
-        <property name="password" value="${recreation.db.password}"/>
         <!-- 初始化连接大小 -->
-        <property name="initialSize" value="0"/>
+        <property name="initialSize" value="${jdbc.initialPoolSize}"/>
         <!-- 连接池最大使用连接数量 -->
-        <property name="maxActive" value="${recreation.db.maxTotal}"/>
+        <property name="maxActive" value="${jdbc.maxTotal}"/>
         <!-- 连接池最小空闲 -->
-        <property name="minIdle" value="${recreation.db.maxIdle}"/>
+        <property name="minIdle" value="${jdbc.maxIdleTime}"/>
         <!-- 获取连接最大等待时间 -->
-        <property name="maxWait" value="${recreation.db.maxWaitMillis:10000}"/>
+        <property name="maxWait" value="${jdbc.maxWaitMillis}"/>
         <!-- 验证数据库连接有效性，要求查询语句 -->
-        <property name="validationQuery" value="SELECT 1 from dual"/>
-        <!-- 建议配置为true，不影响性能，并且保证安全性。申请连接的时候检测，如果空闲时间大于timeBetweenEvictionRunsMillis，执行validationQuery检测连接是否有效。 -->
+        <property name="validationQuery" value="SELECT 1 from t_druid"/>
+        <!--
+            建议配置为true，不影响性能，并且保证安全性。申请连接的时候检测，
+            如果空闲时间大于timeBetweenEvictionRunsMillis，执行validationQuery检测连接是否有效。
+        -->
         <property name="testWhileIdle" value="true"/>
+
         <!-- 申请连接时执行validationQuery检测连接是否有效，配置true会降低性能。 -->
         <property name="testOnBorrow" value="false"/>
         <!-- 归还连接时执行validationQuery检测连接是否有效，配置true会降低性能 -->
-        <property name="testOnReturn" value="false"/>
+        <property name="testOnReturn" value="true"/>
         <!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
         <property name="timeBetweenEvictionRunsMillis" value="60000"/>
         <!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
-        <property name="minEvictableIdleTimeMillis" value="${recreation.db.maxConnLifetimeMillis:28800000}"/>
+        <property name="minEvictableIdleTimeMillis" value="${jdbc.druid.maxConnLifetimeMillis}"/>
         <!-- 对于长时间不使用的连接强制关闭 -->
-        <property name="removeAbandoned" value="true"/>
+        <property name="removeAbandoned" value="${jdbc.druid.removeAbandoned}"/>
         <!-- 关闭超过30分钟的空闲连接，1800秒，也就是30分钟 -->
-        <property name="removeAbandonedTimeout" value="7200"/>
+        <property name="removeAbandonedTimeout" value="${jdbc.druid.removeAbandonedTimeout}"/>
         <!-- 关闭abanded连接时输出错误日志 -->
         <property name="logAbandoned" value="true"/>
         <!-- 监控数据库 -->
@@ -51,14 +48,13 @@ http://www.springframework.org/schema/beans/spring-beans.xsd">
     </bean>
 
     <!-- 定义事务管理器（声明式的事务） -->
-    <bean id="recreationTransactionManager"
-          class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
+    <bean id="dev4ConcurrentTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
           primary="true">
-        <property name="dataSource" ref="recreationDataSource"/>
+        <property name="dataSource" ref="dev4ConcurrentDataSource"/>
     </bean>
 
-    <bean id="recreationSqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-        <property name="dataSource" ref="recreationDataSource"/>
+    <bean id="dev4ConcurrentSqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dev4ConcurrentDataSource"/>
         <property name="configLocation" value="classpath:mybatis.xml"/>
         <property name="mapperLocations">
             <list>
@@ -66,9 +62,9 @@ http://www.springframework.org/schema/beans/spring-beans.xsd">
             </list>
         </property>
     </bean>
-    <bean id="recreationMapperScannerConfig" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="sqlSessionFactoryBeanName" value="recreationSqlSessionFactory"/>
-        <property name="basePackage" value="com.weixinjia.recreation.mapper"/>
+    <bean id="devMapperScannerConfig" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="sqlSessionFactoryBeanName" value="dev4ConcurrentSqlSessionFactory"/>
+        <property name="basePackage" value="com.hurrican.mapper"/>
     </bean>
 
 </beans>

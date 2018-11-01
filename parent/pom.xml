@@ -6,6 +6,8 @@
 
     <groupId>cn.hurrican</groupId>
     <artifactId>parent</artifactId>
+    <!--解决Invalid packaging for parent POM ,must be "pom" but is "jar"错误-->
+    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
 
     <properties>

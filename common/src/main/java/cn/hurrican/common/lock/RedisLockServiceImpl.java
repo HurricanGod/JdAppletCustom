@@ -23,6 +23,7 @@ public class RedisLockServiceImpl implements RedisLockService {
     private static final int DEFAULT_SINGLE_EXPIRE_TIME = 5;
     private static final int DEFAULT_BATCH_EXPIRE_TIME = 10;
     private static Logger LOGGER = LogManager.getLogger(RedisLockServiceImpl.class);
+
     private RedisExecutor redisExecutor;
 
 

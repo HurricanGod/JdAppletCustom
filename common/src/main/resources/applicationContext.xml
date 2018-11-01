@@ -4,19 +4,13 @@
        xmlns:aop="http://www.springframework.org/schema/aop"
        xmlns="http://www.springframework.org/schema/beans"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-           http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+           http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+           http://www.springframework.org/schema/task
+           http://www.springframework.org/schema/task/spring-task-4.3.xsd
 
 
-
-
-
-  			http://www.springframework.org/schema/task
-           http://www.springframework.org/schema/task/spring-task-4.1.xsd
-
-           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.1.xsd
            http://www.springframework.org/schema/aop
-		   http://www.springframework.org/schema/aop/spring-aop-4.1.xsd">
-
+		   http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
     <!-- 增加切面配置 -->
     <aop:aspectj-autoproxy/>
 

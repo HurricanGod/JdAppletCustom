@@ -1,4 +1,4 @@
-package cn.hurrican.common.controller;
+package cn.hurrican.app.controller;
 
 /**
  * @Author: Hurrican

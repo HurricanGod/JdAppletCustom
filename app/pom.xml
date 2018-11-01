@@ -25,6 +25,12 @@
   </properties>
 
   <dependencies>
+
+    <dependency>
+      <groupId>cn.hurrican</groupId>
+      <artifactId>common</artifactId>
+    </dependency>
+
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
@@ -75,10 +81,6 @@
       <groupId>org.springframework</groupId>
       <artifactId>spring-webmvc</artifactId>
     </dependency>
-
-
-
-
 
 
   </dependencies>

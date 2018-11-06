@@ -8,5 +8,5 @@
         http://www.springframework.org/schema/context/spring-context.xsd">
 
 
-    <context:component-scan base-package="cn.hurrican.*"/>
+    <context:component-scan base-package="cn.hurrican*"/>
 </beans>

@@ -64,7 +64,7 @@
     </bean>
     <bean id="devMapperScannerConfig" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="sqlSessionFactoryBeanName" value="dev4ConcurrentSqlSessionFactory"/>
-        <property name="basePackage" value="com.hurrican.mapper"/>
+        <property name="basePackage" value="cn.hurrican.mapper"/>
     </bean>
 
 </beans>

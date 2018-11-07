@@ -36,7 +36,9 @@
         <!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
         <property name="timeBetweenEvictionRunsMillis" value="60000"/>
         <!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
-        <property name="minEvictableIdleTimeMillis" value="${jdbc.druid.maxConnLifetimeMillis}"/>
+        <property name="minEvictableIdleTimeMillis" value="${jdbc.druid.minEvictableIdleTimeMillis}"/>
+
+        <property name="maxEvictableIdleTimeMillis" value="${jdbc.druid.maxEvictableIdleTimeMillis}"/>
         <!-- 对于长时间不使用的连接强制关闭 -->
         <property name="removeAbandoned" value="${jdbc.druid.removeAbandoned}"/>
         <!-- 关闭超过30分钟的空闲连接，1800秒，也就是30分钟 -->

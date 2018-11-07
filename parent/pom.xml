@@ -72,7 +72,8 @@
         <fileupload.version>1.2.2</fileupload.version>
         <ognl.version>3.0.1</ognl.version>
         <javassist.version>3.14.0-GA</javassist.version>
-        <druid.version>1.1.8</druid.version>
+        <druid.version>1.1.11</druid.version>
+        <commons.logging>1.2</commons.logging>
 
         <!-- maven插件的版本 -->
         <maven.compiler.plugin.version>3.1</maven.compiler.plugin.version>
@@ -105,7 +106,7 @@
             <dependency>
                 <groupId>javax.servlet</groupId>
                 <artifactId>javax.servlet-api</artifactId>
-                <version>${servlet.version}</version>
+                <version>${servlet.api.version}</version>
                 <scope>provided</scope>
             </dependency>
             <dependency>
@@ -177,6 +178,23 @@
                 <version>${spring.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>cglib</groupId>
+                <artifactId>cglib</artifactId>
+                <version>${cglib.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>aopalliance</groupId>
+                <artifactId>aopalliance</artifactId>
+                <version>${aopalliance.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-aspects</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+
             <!--freemarker依赖-->
             <dependency>
                 <groupId>org.freemarker</groupId>
@@ -238,6 +256,13 @@
                 <artifactId>log4j-web</artifactId>
                 <version>${log4j2.version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>commons-logging</groupId>
+                <artifactId>commons-logging</artifactId>
+                <version>${commons.logging}</version>
+            </dependency>
+
             <!-- -->
 
             <dependency>
